@@ -296,15 +296,12 @@ def run_standard_protocol(meta, feature_dict):
         print 'Kernel Analysis, mean KA-AUC:', np.mean(var_results), '(%2.2e)' % np.std(var_results)
 
         var_genearalization_results = np.array([1. - item['ka_pred_curve'] for item in ka_results[variation]])
-        print var_genearalization_results.shape
-        print(var_genearalization_results)
-        '''
+        print(ka_results)
         var_genearalization_results_mean = np.mean(var_genearalization_results, axis=0)
         argmax = np.argmax(var_genearalization_results_mean)
         ka_results[variation]['best_gen_acc'] = var_genearalization_results_mean[argmax]
         print 'Generalization Accuracy:', var_genearalization_results_mean[argmax], \
             '(%2.2e)' % np.std(var_genearalization_results[:, argmax])
-            '''
 
     return ka_results
 
