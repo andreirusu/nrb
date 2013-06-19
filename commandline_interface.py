@@ -235,10 +235,9 @@ def parse_feature_data(base_path, extension='.txt'):
             for line in fh.readlines():
                 line = line.strip('\n')
                 split_line = line.split(' ')
-
+            
                 image_id = split_line[0]
                 image_ids.append(image_id)
-
                 feature = [float(s) for s in split_line[1:]]
                 features.append(feature)
 
@@ -296,10 +295,9 @@ def run_standard_protocol(meta, feature_dict):
         print 'Kernel Analysis, mean KA-AUC:', np.mean(var_results), '(%2.2e)' % np.std(var_results)
 
         var_genearalization_results = np.array([1. - item['ka_pred_curve'] for item in ka_results[variation]])
-        print(ka_results)
         var_genearalization_results_mean = np.mean(var_genearalization_results, axis=0)
         argmax = np.argmax(var_genearalization_results_mean)
-        ka_results[variation]['best_gen_acc'] = var_genearalization_results_mean[argmax]
+        ka_results[variation][0]['best_gen_acc'] = var_genearalization_results_mean[argmax]
         print 'Generalization Accuracy:', var_genearalization_results_mean[argmax], \
             '(%2.2e)' % np.std(var_genearalization_results[:, argmax])
 
